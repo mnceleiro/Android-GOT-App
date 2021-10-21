@@ -1,2 +1,2 @@
 # Android-GOT-App
-GOT App for Android with Kotlin for teaching purposes
+GOT App with Android and Kotlin for teaching purposes
