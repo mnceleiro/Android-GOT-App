@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:padding="16dp"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="?android:attr/selectableItemBackground">
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/iv_character"
@@ -28,7 +29,7 @@
         android:layout_marginStart="12dp"
         app:layout_constraintStart_toEndOf="@+id/iv_character"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="Daenerys Targaryan" />
+        tools:text="Daenerys Targaryen" />
 
     <TextView
         android:id="@+id/tv_character_family"
@@ -38,7 +39,7 @@
         android:layout_marginTop="8dp"
         app:layout_constraintStart_toEndOf="@+id/iv_character"
         app:layout_constraintTop_toBottomOf="@+id/tv_character_title"
-        tools:text="Casa Targaryan" />
+        tools:text="Casa Targaryen" />
 
     <TextView
         android:id="@+id/tv_character_title"

@@ -1,34 +1,39 @@
-package es.mnceleiro.pmdm.listagot
+package es.mnceleiro.pmdm.listagot.adapters
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.squareup.picasso.Picasso
 import es.mnceleiro.pmdm.listagot.databinding.ItemCharacterListBinding
 import es.mnceleiro.pmdm.listagot.model.entities.GotCharacter
-import java.lang.System.load
 
-class CharacterListAdapter(var characterList: List<GotCharacter>) : RecyclerView.Adapter<CharacterListAdapter.CharacterViewHolder>() {
+class CharacterListAdapter(var characterList: List<GotCharacter>) : RecyclerView.Adapter<CharacterListAdapter.GotCharacterViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharacterViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GotCharacterViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        return CharacterViewHolder(ItemCharacterListBinding.inflate(layoutInflater, parent, false))
+        return GotCharacterViewHolder(ItemCharacterListBinding.inflate(layoutInflater, parent, false))
     }
 
-    override fun onBindViewHolder(holder: CharacterViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: GotCharacterViewHolder, position: Int) {
         holder.bind(characterList[position])
     }
 
     override fun getItemCount(): Int = characterList.size
 
-    class CharacterViewHolder(private val itemBinding: ItemCharacterListBinding) : ViewHolder(itemBinding.root) {
+    class GotCharacterViewHolder(private val itemBinding: ItemCharacterListBinding) : ViewHolder(itemBinding.root) {
+
         fun bind(character: GotCharacter) {
             itemBinding.tvCharacterName.text = character.getFullName()
             itemBinding.tvCharacterFamily.text = character.family
             itemBinding.tvCharacterTitle.text = character.title
+
             Picasso.get().load(character.url).into(itemBinding.ivCharacter)
+
+            itemBinding.root.setOnClickListener {
+                Toast.makeText(itemBinding.root.context, character.toString(), Toast.LENGTH_SHORT).show()
+            }
         }
     }
 }

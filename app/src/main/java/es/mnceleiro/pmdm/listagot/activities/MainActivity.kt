@@ -1,15 +1,13 @@
-package es.mnceleiro.pmdm.listagot
+package es.mnceleiro.pmdm.listagot.activities
 
-import android.media.CamcorderProfile.getAll
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.DividerItemDecoration
 import es.mnceleiro.pmdm.listagot.databinding.ActivityMainBinding
 import es.mnceleiro.pmdm.listagot.model.dao.GotCharacterDaoImpl
-import androidx.recyclerview.widget.DividerItemDecoration
-
-
+import es.mnceleiro.pmdm.listagot.adapters.CharacterListAdapter
 
 
 class MainActivity : AppCompatActivity() {
@@ -21,9 +19,14 @@ class MainActivity : AppCompatActivity() {
 
         title = "GOT Characters"
 
+        val characterGotList = GotCharacterDaoImpl().getAll()
+
         val rvCharacterList: RecyclerView = binding.rvCharacterList
+
         val layoutManager = LinearLayoutManager(this)
-        val adapter = CharacterListAdapter(GotCharacterDaoImpl().getAll())
+
+        val adapter = CharacterListAdapter(characterGotList)
+
         val dividerItemDecoration = DividerItemDecoration(rvCharacterList.context, layoutManager.orientation)
 
         rvCharacterList.adapter = adapter
