@@ -11,7 +11,7 @@
         android:id="@+id/iv_character"
         android:layout_width="64dp"
         android:layout_height="64dp"
-
+        android:padding="2.5dp"
         app:strokeWidth="5dp"
         app:strokeColor="@android:color/darker_gray"
         app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
@@ -50,4 +50,5 @@
         app:layout_constraintStart_toEndOf="@+id/iv_character"
         app:layout_constraintTop_toBottomOf="@+id/tv_character_name"
         tools:text="Madre de dragones" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

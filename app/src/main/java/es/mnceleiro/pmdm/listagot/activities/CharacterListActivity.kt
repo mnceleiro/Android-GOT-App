@@ -25,7 +25,7 @@ class CharacterListActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         // Set the ActionBar title to "GOT Characters"
-        title = "GOT Characters"
+        title = "Lista de personajes"
 
         val characterGotList = GotCharacterDaoImpl().getAll()
 
