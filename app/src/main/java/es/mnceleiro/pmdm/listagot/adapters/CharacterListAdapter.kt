@@ -1,11 +1,13 @@
 package es.mnceleiro.pmdm.listagot.adapters
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.squareup.picasso.Picasso
+import es.mnceleiro.pmdm.listagot.activities.CharacterDetailActivity
 import es.mnceleiro.pmdm.listagot.databinding.ItemCharacterListBinding
 import es.mnceleiro.pmdm.listagot.model.entities.GotCharacter
 
@@ -32,7 +34,9 @@ class CharacterListAdapter(var characterList: List<GotCharacter>) : RecyclerView
             Picasso.get().load(character.url).into(itemBinding.ivCharacter)
 
             itemBinding.root.setOnClickListener {
-                Toast.makeText(itemBinding.root.context, character.toString(), Toast.LENGTH_SHORT).show()
+                val intent = Intent(itemBinding.root.context, CharacterDetailActivity::class.java)
+
+                itemBinding.root.context.startActivity(intent)
             }
         }
     }
