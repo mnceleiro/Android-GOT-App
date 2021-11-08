@@ -27,10 +27,14 @@ class MainActivity : AppCompatActivity() {
 
         val adapter = CharacterListAdapter(characterGotList)
 
-        val dividerItemDecoration = DividerItemDecoration(rvCharacterList.context, layoutManager.orientation)
+        val dividerItemDecoration = DividerItemDecoration(
+            rvCharacterList.context,
+            layoutManager.orientation
+        )
+
+        rvCharacterList.addItemDecoration(dividerItemDecoration)
 
         rvCharacterList.adapter = adapter
         rvCharacterList.layoutManager = layoutManager
-        rvCharacterList.addItemDecoration(dividerItemDecoration)
     }
 }
