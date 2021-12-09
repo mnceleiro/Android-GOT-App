@@ -3,7 +3,6 @@ package es.mnceleiro.pmdm.listagot.adapters
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.squareup.picasso.Picasso
@@ -11,7 +10,7 @@ import es.mnceleiro.pmdm.listagot.activities.CharacterDetailActivity
 import es.mnceleiro.pmdm.listagot.databinding.ItemCharacterListBinding
 import es.mnceleiro.pmdm.listagot.model.entities.GotCharacter
 
-class CharacterListAdapter(var characterList: List<GotCharacter>) : RecyclerView.Adapter<CharacterListAdapter.GotCharacterViewHolder>() {
+class CharacterListAdapter(private var characterList: List<GotCharacter>) : RecyclerView.Adapter<CharacterListAdapter.GotCharacterViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GotCharacterViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)

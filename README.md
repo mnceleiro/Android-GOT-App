@@ -20,3 +20,6 @@ En esta versión repasarás:
     - Cambiar el título de una pantalla.
     - Añadido de botones a la barra superior.
 - Creación de diálogos con AlertDialog.
+
+## Versión 1.2 (extracción de recursos) -> commit X
+- Reutilización de strings y dimensiones.

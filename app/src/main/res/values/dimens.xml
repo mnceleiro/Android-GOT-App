@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Margenes y paddings -->
+    <dimen name="character_detail_margin_between_textfields">32dp</dimen>
+    <dimen name="layout_margin_default">16dp</dimen>
+
+</resources>

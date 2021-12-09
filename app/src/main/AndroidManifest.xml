@@ -12,11 +12,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ListaGot"
         android:usesCleartextTraffic="true">
+
         <activity
             android:name=".activities.CharacterDetailActivity"
             android:label="Detalle personaje"
             android:parentActivityName=".activities.CharacterListActivity"
             android:exported="true" />
+
         <activity
             android:name=".activities.CharacterListActivity"
             android:label="Lista GOT"
@@ -26,6 +28,7 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
     </application>
 

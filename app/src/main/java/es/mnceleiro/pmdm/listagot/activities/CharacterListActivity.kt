@@ -2,15 +2,13 @@ package es.mnceleiro.pmdm.listagot.activities
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.DividerItemDecoration
-import es.mnceleiro.pmdm.listagot.R
-import es.mnceleiro.pmdm.listagot.model.dao.GotCharacterDaoImpl
 import es.mnceleiro.pmdm.listagot.adapters.CharacterListAdapter
 import es.mnceleiro.pmdm.listagot.databinding.ActivityCharacterListBinding
+import es.mnceleiro.pmdm.listagot.model.dao.GotCharacterDaoImpl
 
 
 class CharacterListActivity : AppCompatActivity() {

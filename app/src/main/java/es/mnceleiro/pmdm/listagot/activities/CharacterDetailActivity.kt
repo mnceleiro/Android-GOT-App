@@ -1,13 +1,11 @@
 package es.mnceleiro.pmdm.listagot.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import com.google.android.material.snackbar.Snackbar
+import androidx.appcompat.app.AppCompatActivity
 import es.mnceleiro.pmdm.listagot.R
 import es.mnceleiro.pmdm.listagot.databinding.ActivityCharacterDetailBinding
 
@@ -30,7 +28,7 @@ class CharacterDetailActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_save_or_update -> {
-                Toast.makeText(this, "Personaje guardado correctamente.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.message_character_created_success), Toast.LENGTH_SHORT).show()
                 finish()
                 true
             }
@@ -38,12 +36,12 @@ class CharacterDetailActivity : AppCompatActivity() {
             R.id.action_delete -> {
                 val builder = AlertDialog.Builder(this)
 
-                builder.setTitle("Eliminar personaje")
-                    .setMessage("La película seleccionada va a ser eliminada, ¿está seguro?")
-                    .setPositiveButton("Aceptar") { _, _ ->
-                        Toast.makeText(this, "Personaje eliminado.", Toast.LENGTH_SHORT).show()
+                builder.setTitle(getString(R.string.message_character_delete))
+                    .setMessage(getString(R.string.message_prompt_character_will_be_deleted))
+                    .setPositiveButton(getString(R.string.action_ok)) { _, _ ->
+                        Toast.makeText(this, getString(R.string.message_character_deleted), Toast.LENGTH_SHORT).show()
                         finish()
-                    }.setNegativeButton("Cancelar", null)
+                    }.setNegativeButton(getString(R.string.action_cancel), null)
                     .show()
 
                 true
