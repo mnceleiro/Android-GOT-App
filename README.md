@@ -21,5 +21,5 @@ En esta versión repasarás:
     - Añadido de botones a la barra superior.
 - Creación de diálogos con AlertDialog.
 
-## Versión 1.2 (extracción de recursos) -> commit X
+## Versión 1.2 (extracción de recursos) -> commit bb50a462836e304ec98495c88e30cc63d562f28e
 - Reutilización de strings y dimensiones.
