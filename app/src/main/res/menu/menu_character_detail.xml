@@ -3,10 +3,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/action_save_or_update"
+        android:id="@+id/action_update"
         android:icon="@drawable/ic_outline_check_white_24"
         android:orderInCategory="300"
-        android:title="@string/action_save"
+        android:title="@string/action_update"
+        android:visible="true"
         app:showAsAction="ifRoom" />
 
     <item
@@ -14,6 +15,14 @@
         android:orderInCategory="300"
         android:icon="@drawable/ic_outline_delete_white_24"
         android:title="@string/action_delete"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_edit"
+        android:orderInCategory="300"
+        android:icon="@drawable/ic_baseline_edit_24"
+        android:title="@string/action_edit"
+        android:visible="false"
         app:showAsAction="ifRoom" />
 
 </menu>

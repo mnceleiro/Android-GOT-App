@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name=".App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -14,15 +15,9 @@
         android:usesCleartextTraffic="true">
 
         <activity
-            android:name=".activities.CharacterDetailActivity"
-            android:label="Detalle personaje"
-            android:parentActivityName=".activities.CharacterListActivity"
-            android:exported="true" />
-
-        <activity
             android:name=".activities.CharacterListActivity"
-            android:label="Lista GOT"
-            android:exported="true">
+            android:exported="true"
+            android:label="@string/label_character_list">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,6 +25,23 @@
             </intent-filter>
 
         </activity>
+
+        <activity
+            android:name=".activities.CharacterCreateActivity"
+            android:exported="true"
+            android:label="@string/label_character_new"
+            android:parentActivityName=".activities.CharacterListActivity"
+            android:windowSoftInputMode="stateHidden">
+        </activity>
+
+        <activity
+            android:name=".activities.CharacterDetailActivity"
+            android:exported="true"
+            android:label="@string/label_character_detail"
+            android:parentActivityName=".activities.CharacterListActivity"
+            android:windowSoftInputMode="stateHidden">
+        </activity>
+
     </application>
 
 </manifest>

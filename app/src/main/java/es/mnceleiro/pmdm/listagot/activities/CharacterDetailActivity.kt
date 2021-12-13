@@ -27,7 +27,7 @@ class CharacterDetailActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            R.id.action_save_or_update -> {
+            R.id.action_update -> {
                 Toast.makeText(this, getString(R.string.message_character_created_success), Toast.LENGTH_SHORT).show()
                 finish()
                 true

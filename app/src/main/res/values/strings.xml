@@ -1,4 +1,5 @@
 <resources>
+
     <!-- Principales -->
     <string name="app_name">GotApp</string>
 
@@ -7,6 +8,11 @@
     <string name="hint_enter_family">Introduce la familia</string>
     <string name="hint_enter_house">Introduce la casa</string>
     <string name="hint_enter_title">Introduce el título</string>
+
+    <!-- Etiquetas -->
+    <string name="label_character_list">Lista de personajes</string>
+    <string name="label_character_detail">Detalle personaje</string>
+    <string name="label_character_new">Nuevo personaje</string>
 
     <!-- Descripciones -->
     <string name="desc_add_new_character">Añadir nuevo personaje</string>
@@ -19,7 +25,11 @@
 
     <!-- Acciones -->
     <string name="action_save">Guardar</string>
+    <string name="action_update">Actualizar</string>
+    <string name="action_edit">Editar</string>
     <string name="action_delete">Eliminar</string>
     <string name="action_cancel">Cancelar</string>
     <string name="action_ok">Aceptar</string>
+    <string name="hint_enter_lastname">Introduce los apellidos</string>
+
 </resources>
