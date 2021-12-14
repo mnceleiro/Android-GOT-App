@@ -22,7 +22,7 @@ class GuiUtils(val context: Context) {
         dialog.show()
     }
 
-    fun showToast(message: String) {
-        Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+    fun showToast(messageResource: Int) {
+        Toast.makeText(context, messageResource, Toast.LENGTH_SHORT).show()
     }
 }

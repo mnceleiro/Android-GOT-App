@@ -15,13 +15,38 @@
         android:id="@+id/btn_character_add"
         android:layout_width="wrap_content"
 
-        android:backgroundTint="@color/purple_500"
-        app:tint="@color/white"
-
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:layout_margin="16dp"
-        android:contentDescription="@string/desc_add_new_character"
-        app:srcCompat="@drawable/ic_baseline_add_24"/>
 
+        android:layout_margin="16dp"
+        android:backgroundTint="@color/purple_500"
+        android:contentDescription="@string/desc_add_new_character"
+        app:srcCompat="@drawable/ic_baseline_add_24"
+        app:tint="@color/white" />
+
+    <!-- TODO: refactorizar para hacer doble include (layout vacio y layout recyclerview) -->
+    <LinearLayout
+        android:id="@+id/layout_character_empty_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="@dimen/layout_margin_default"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No hay personajes creados."
+            android:textAlignment="center"
+            android:paddingBottom="8dp"
+            android:textSize="36sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Puedes añadirlos en el icono de la parte inferior derecha de la pantalla."
+            android:textAlignment="center"
+            android:textSize="24sp" />
+
+    </LinearLayout>
 </FrameLayout>

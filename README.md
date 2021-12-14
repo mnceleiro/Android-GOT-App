@@ -30,3 +30,6 @@ En esta versión:
 - Mostramos una imagen de tipo "no image" si la URL no es válida (o si no hay conexión a internet o similar) y un placeholder mientras se descarga
 - Separamos el añadido del personaje de su detalle/edición (pero reutilizando el mismo layout, sin duplicar código)
 - Añadido ScrollView a la pantalla de detalle/añadido de personajes para que sea más usable cuando se ve el teclado.
+
+## Versión 1.4 (funcionalidad completa de CRUD sobre datos mockeados)
+- Añadida funcionalidad de añadido, eliminación y modificación de datos todavía sobre elementos mockeados.

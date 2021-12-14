@@ -1,5 +1,7 @@
 package es.mnceleiro.pmdm.listagot.activities
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -9,6 +11,7 @@ import es.mnceleiro.pmdm.listagot.model.dao.GotCharacterDao
 import es.mnceleiro.pmdm.listagot.model.dao.GotCharacterMockDaoImpl
 import es.mnceleiro.pmdm.listagot.model.entities.GotCharacter
 
+// TODO: refactorizar en una activity padre abstracta
 class CharacterCreateActivity : ExtendedActivity() {
 
     // Fields
@@ -23,6 +26,13 @@ class CharacterCreateActivity : ExtendedActivity() {
         setContentView(binding.root)
 
         characterDao = GotCharacterMockDaoImpl()
+
+        binding.btnSearchImageUrl.setOnClickListener {
+            val url = "https://www.google.com/search?q=game+of+thrones+character&tbm=isch&oq=game+of+thrones+character&bih=955"
+            val i = Intent(Intent.ACTION_VIEW)
+            i.data = Uri.parse(url)
+            startActivity(i)
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -34,7 +44,8 @@ class CharacterCreateActivity : ExtendedActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.action_save) {
             createNewCharacter()
-
+            guiUtils.showToast(R.string.message_character_created_success)
+            finish()
         }
 
         return super.onOptionsItemSelected(item)
@@ -54,7 +65,8 @@ class CharacterCreateActivity : ExtendedActivity() {
             binding.etCharacterLastname.text.toString(),
             binding.etCharacterHouse.text.toString(),
             binding.etCharacterTitle.text.toString(),
-            binding.etCharacterFamily.text.toString()
+            binding.etCharacterFamily.text.toString(),
+            binding.etCharacterUrl.text.toString()
         )
 
         characterDao.add(character)
@@ -67,10 +79,9 @@ class CharacterCreateActivity : ExtendedActivity() {
                 etCharacterLastname.text.toString(),
                 etCharacterHouse.text.toString(),
                 etCharacterTitle.text.toString(),
-                etCharacterFamily.text.toString()
+                etCharacterFamily.text.toString(),
+                etCharacterUrl.text.toString()
             )
         })
     }
-
-
 }

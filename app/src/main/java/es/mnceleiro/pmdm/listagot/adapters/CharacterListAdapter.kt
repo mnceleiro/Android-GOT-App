@@ -37,7 +37,7 @@ class CharacterListAdapter(private var characterList: List<GotCharacter>) :
 
             itemBinding.root.setOnClickListener {
                 val intent = Intent(itemBinding.root.context, CharacterDetailActivity::class.java)
-
+                intent.putExtra(CharacterDetailActivity.BUNDLE_DATA_CHARACTER, character)
                 itemBinding.root.context.startActivity(intent)
             }
         }

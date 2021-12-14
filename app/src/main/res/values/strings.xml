@@ -8,6 +8,8 @@
     <string name="hint_enter_family">Introduce la familia</string>
     <string name="hint_enter_house">Introduce la casa</string>
     <string name="hint_enter_title">Introduce el título</string>
+    <string name="hint_enter_image_url">URL de la imagen</string>
+    <string name="hint_enter_lastname">Introduce los apellidos</string>
 
     <!-- Etiquetas -->
     <string name="label_character_list">Lista de personajes</string>
@@ -21,7 +23,8 @@
     <string name="message_character_delete">Eliminar personaje</string>
     <string name="message_character_deleted">Personaje eliminado.</string>
     <string name="message_prompt_character_will_be_deleted">El personaje seleccionado va a ser eliminado, ¿está seguro?</string>
-    <string name="message_character_created_success">Personaje guardado correctamente.</string>
+    <string name="message_character_created_success">El personaje se ha creado correctamente.</string>
+    <string name="message_character_updated_success">El personaje se ha actualizado correctamente.</string>
 
     <!-- Acciones -->
     <string name="action_save">Guardar</string>
@@ -30,6 +33,6 @@
     <string name="action_delete">Eliminar</string>
     <string name="action_cancel">Cancelar</string>
     <string name="action_ok">Aceptar</string>
-    <string name="hint_enter_lastname">Introduce los apellidos</string>
+    <string name="action_search_image_on_the_internet">Buscar</string>
 
 </resources>

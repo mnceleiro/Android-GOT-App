@@ -1,5 +1,7 @@
 package es.mnceleiro.pmdm.listagot.model.entities
 
+import java.io.Serializable
+
 data class GotCharacter(
     var firstName: String,
     var lastName: String,
@@ -7,7 +9,9 @@ data class GotCharacter(
     var family: String,
     var house: String,
     var url: String = ""
-) {
+
+) : Serializable {
+
     var id: Long = 0
 
     constructor(id: Long, firstName: String, lastName: String, title: String, family: String, house: String, url: String = "")

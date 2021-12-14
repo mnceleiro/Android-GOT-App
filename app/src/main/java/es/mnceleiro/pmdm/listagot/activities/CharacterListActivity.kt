@@ -2,6 +2,7 @@ package es.mnceleiro.pmdm.listagot.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,6 +18,7 @@ import es.mnceleiro.pmdm.listagot.model.entities.GotCharacter
 
 class CharacterListActivity : AppCompatActivity() {
 
+    private lateinit var adapter: CharacterListAdapter
     private lateinit var binding: ActivityCharacterListBinding
     private lateinit var characterList: MutableList<GotCharacter>
     private lateinit var characterDao: GotCharacterDao
@@ -38,7 +40,7 @@ class CharacterListActivity : AppCompatActivity() {
         // Create RecyclerView related objects
         val rvCharacterList: RecyclerView = binding.rvCharacterList
         val layoutManager = LinearLayoutManager(this)
-        val adapter = CharacterListAdapter(characterList)
+        adapter = CharacterListAdapter(characterList)
         val dividerItemDecoration = DividerItemDecoration(rvCharacterList.context, layoutManager.orientation)
 
         // Assign all objects to the RecyclerView
@@ -51,5 +53,30 @@ class CharacterListActivity : AppCompatActivity() {
             val intent = Intent(this, CharacterCreateActivity::class.java)
             startActivity(intent)
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        // If no elements in the list, hide the recyclerview and show a message
+        showLayoutOnTheScreen()
+
+        // Notify changes to the adapter
+        adapter.notifyDataSetChanged()
+    }
+
+    private fun showLayoutOnTheScreen() {
+        if (characterList.size == 0) showLayoutNoElements()
+        else showLayoutWithElements()
+    }
+
+    private fun showLayoutWithElements() {
+        binding.layoutCharacterEmptyList.visibility = View.GONE
+        binding.rvCharacterList.visibility = View.VISIBLE
+    }
+
+    private fun showLayoutNoElements() {
+        binding.layoutCharacterEmptyList.visibility = View.VISIBLE
+        binding.rvCharacterList.visibility = View.GONE
     }
 }
