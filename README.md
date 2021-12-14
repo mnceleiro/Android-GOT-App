@@ -10,7 +10,7 @@ En esta versión aprenderás:
 - Carga de imágenes disponibles en internet mediante la biblioteca "Picasso".
 - Imágenes redondeadas usando ShapeableImageView.
 
-## Versión 1.1
+## Versión 1.1 -> commit 67825bf5b63757d1c3186914fa7e50ef7afe651a
 En esta versión repasarás:
 - Iniciar nuevas activities.
 - "Matar" o "finalizar" activities (volver a la anterior).
@@ -23,7 +23,7 @@ En esta versión repasarás:
 ## Versión 1.2 (extracción de recursos) -> commit bb50a462836e304ec98495c88e30cc63d562f28e
 - Reutilización de strings y dimensiones.
 
-## Versión 1.3 (mejoras de código)
+## Versión 1.3 (mejoras de código) -> commit 7cb009dc9e85bd9ec9f71539f290a8b74a1d9260
 En esta versión:
 - Mejoramos el comportamiento del Mock con una lista global de personajes. Simulamos una base de datos real en una clase MockData y accedemos a todo desde el DAO.
 - Creamos nuestra propia clase que hereda de Application (con su propio ciclo de vida) para inicializar la lista de personajes abrir la app.
@@ -31,5 +31,5 @@ En esta versión:
 - Separamos el añadido del personaje de su detalle/edición (pero reutilizando el mismo layout, sin duplicar código)
 - Añadido ScrollView a la pantalla de detalle/añadido de personajes para que sea más usable cuando se ve el teclado.
 
-## Versión 1.4 (funcionalidad completa de CRUD sobre datos mockeados)
+## Versión 1.4 (funcionalidad completa de CRUD sobre datos mockeados) -> commit 8bd2a2267cc4fb42272f4876c59af740f7bc13aa
 - Añadida funcionalidad de añadido, eliminación y modificación de datos todavía sobre elementos mockeados.
