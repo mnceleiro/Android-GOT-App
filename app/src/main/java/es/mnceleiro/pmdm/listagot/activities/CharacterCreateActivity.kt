@@ -8,7 +8,7 @@ import android.view.MenuItem
 import es.mnceleiro.pmdm.listagot.R
 import es.mnceleiro.pmdm.listagot.databinding.ActivityCharacterDetailBinding
 import es.mnceleiro.pmdm.listagot.model.dao.GotCharacterDao
-import es.mnceleiro.pmdm.listagot.model.dao.GotCharacterMockDaoImpl
+import es.mnceleiro.pmdm.listagot.model.dao.mock.GotCharacterMockDaoImpl
 import es.mnceleiro.pmdm.listagot.model.entities.GotCharacter
 
 // TODO: refactorizar en una activity padre abstracta
@@ -63,7 +63,6 @@ class CharacterCreateActivity : ExtendedActivity() {
         val character = GotCharacter(
             binding.etCharacterFirstname.text.toString(),
             binding.etCharacterLastname.text.toString(),
-            binding.etCharacterHouse.text.toString(),
             binding.etCharacterTitle.text.toString(),
             binding.etCharacterFamily.text.toString(),
             binding.etCharacterUrl.text.toString()
@@ -77,7 +76,6 @@ class CharacterCreateActivity : ExtendedActivity() {
             GotCharacter(
                 etCharacterFirstname.text.toString(),
                 etCharacterLastname.text.toString(),
-                etCharacterHouse.text.toString(),
                 etCharacterTitle.text.toString(),
                 etCharacterFamily.text.toString(),
                 etCharacterUrl.text.toString()

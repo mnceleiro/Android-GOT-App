@@ -7,7 +7,6 @@ data class GotCharacter(
     var lastName: String,
     var title: String,
     var family: String,
-    var house: String,
     var url: String = ""
 
 ) : Serializable {
@@ -15,7 +14,7 @@ data class GotCharacter(
     var id: Long = 0
 
     constructor(id: Long, firstName: String, lastName: String, title: String, family: String, house: String, url: String = "")
-            : this(firstName, lastName, title, family, house, url) {
+            : this(firstName, lastName, title, family, url) {
         this.id = id
     }
 

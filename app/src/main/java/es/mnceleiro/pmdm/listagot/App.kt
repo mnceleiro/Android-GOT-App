@@ -1,8 +1,6 @@
 package es.mnceleiro.pmdm.listagot
 
 import android.app.Application
-import es.mnceleiro.pmdm.listagot.model.dao.GotCharacterMockDaoImpl
-import es.mnceleiro.pmdm.listagot.model.entities.GotCharacter
 
 class App : Application() {
 

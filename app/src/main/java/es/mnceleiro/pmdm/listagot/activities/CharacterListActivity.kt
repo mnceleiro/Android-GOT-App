@@ -7,12 +7,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import es.mnceleiro.pmdm.listagot.App
 import es.mnceleiro.pmdm.listagot.R
 import es.mnceleiro.pmdm.listagot.adapters.CharacterListAdapter
 import es.mnceleiro.pmdm.listagot.databinding.ActivityCharacterListBinding
 import es.mnceleiro.pmdm.listagot.model.dao.GotCharacterDao
-import es.mnceleiro.pmdm.listagot.model.dao.GotCharacterMockDaoImpl
+import es.mnceleiro.pmdm.listagot.model.dao.mock.GotCharacterMockDaoImpl
 import es.mnceleiro.pmdm.listagot.model.entities.GotCharacter
 
 

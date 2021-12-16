@@ -6,11 +6,10 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.get
 import es.mnceleiro.pmdm.listagot.R
 import es.mnceleiro.pmdm.listagot.databinding.ActivityCharacterDetailBinding
 import es.mnceleiro.pmdm.listagot.model.dao.GotCharacterDao
-import es.mnceleiro.pmdm.listagot.model.dao.GotCharacterMockDaoImpl
+import es.mnceleiro.pmdm.listagot.model.dao.mock.GotCharacterMockDaoImpl
 import es.mnceleiro.pmdm.listagot.model.entities.GotCharacter
 import android.content.Intent
 import android.net.Uri
@@ -56,7 +55,6 @@ class CharacterDetailActivity : AppCompatActivity() {
         binding.run {
             etCharacterFirstname.setText(character.firstName)
             etCharacterLastname.setText(character.lastName)
-            etCharacterHouse.setText(character.house)
             etCharacterTitle.setText(character.title)
             etCharacterFamily.setText(character.family)
             etCharacterUrl.setText(character.url)
