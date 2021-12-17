@@ -1,5 +1,6 @@
 package es.mnceleiro.pmdm.listagot.model.entities
 
+import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
 data class GotCharacter(
@@ -7,7 +8,7 @@ data class GotCharacter(
     var lastName: String,
     var title: String,
     var family: String,
-    var url: String = ""
+    @SerializedName("imageUrl") var url: String = ""
 
 ) : Serializable {
 

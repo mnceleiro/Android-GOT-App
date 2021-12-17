@@ -2,6 +2,7 @@ package es.mnceleiro.pmdm.listagot.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -12,7 +13,12 @@ import es.mnceleiro.pmdm.listagot.adapters.CharacterListAdapter
 import es.mnceleiro.pmdm.listagot.databinding.ActivityCharacterListBinding
 import es.mnceleiro.pmdm.listagot.model.dao.GotCharacterDao
 import es.mnceleiro.pmdm.listagot.model.dao.mock.GotCharacterMockDaoImpl
+import es.mnceleiro.pmdm.listagot.model.dao.restapi.GotCharacterRestApiDaoImpl
+import es.mnceleiro.pmdm.listagot.model.dao.restapi.RetrofitClient
 import es.mnceleiro.pmdm.listagot.model.entities.GotCharacter
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class CharacterListActivity : AppCompatActivity() {
@@ -39,19 +45,32 @@ class CharacterListActivity : AppCompatActivity() {
         // Create RecyclerView related objects
         val rvCharacterList: RecyclerView = binding.rvCharacterList
         val layoutManager = LinearLayoutManager(this)
-        adapter = CharacterListAdapter(characterList)
         val dividerItemDecoration = DividerItemDecoration(rvCharacterList.context, layoutManager.orientation)
 
         // Assign all objects to the RecyclerView
-        rvCharacterList.adapter = adapter
-        rvCharacterList.layoutManager = layoutManager
         rvCharacterList.addItemDecoration(dividerItemDecoration)
+        rvCharacterList.layoutManager = layoutManager
 
         // Listeners
         binding.btnCharacterAdd.setOnClickListener {
             val intent = Intent(this, CharacterCreateActivity::class.java)
             startActivity(intent)
         }
+
+        val call: Call<List<GotCharacter>> = RetrofitClient.retrofitService.getAllCharacters()
+        call.enqueue(object: Callback<List<GotCharacter>> {
+            override fun onResponse(p0: Call<List<GotCharacter>>, p1: Response<List<GotCharacter>>) {
+                Log.d("RETROFIT", "RETROFIT")
+                characterList = p1.body() as MutableList<GotCharacter>
+                adapter = CharacterListAdapter(characterList)
+                rvCharacterList.adapter = adapter
+            }
+
+            override fun onFailure(p0: Call<List<GotCharacter>>, p1: Throwable) {
+                Log.e("RETROFIT", p1.stackTraceToString())
+            }
+        })
+
     }
 
     override fun onResume() {
@@ -59,9 +78,6 @@ class CharacterListActivity : AppCompatActivity() {
 
         // If no elements in the list, hide the recyclerview and show a message
         showLayoutOnTheScreen()
-
-        // Notify changes to the adapter
-        adapter.notifyDataSetChanged()
     }
 
     private fun showLayoutOnTheScreen() {
