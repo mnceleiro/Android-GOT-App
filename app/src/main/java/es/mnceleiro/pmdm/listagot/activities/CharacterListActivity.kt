@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import es.mnceleiro.pmdm.listagot.R
 import es.mnceleiro.pmdm.listagot.adapters.CharacterListAdapter
 import es.mnceleiro.pmdm.listagot.databinding.ActivityCharacterListBinding
+import es.mnceleiro.pmdm.listagot.listeners.OnItemClickListener
 import es.mnceleiro.pmdm.listagot.model.dao.GotCharacterDao
 import es.mnceleiro.pmdm.listagot.model.dao.mock.GotCharacterMockDaoImpl
 import es.mnceleiro.pmdm.listagot.model.dao.restapi.GotCharacterRestApiDaoImpl
@@ -21,12 +22,11 @@ import retrofit2.Callback
 import retrofit2.Response
 
 
-class CharacterListActivity : AppCompatActivity() {
+class CharacterListActivity : ExtendedActivity(), OnItemClickListener {
 
     private lateinit var adapter: CharacterListAdapter
     private lateinit var binding: ActivityCharacterListBinding
-    private lateinit var characterList: MutableList<GotCharacter>
-    private lateinit var characterDao: GotCharacterDao
+    private var characterList: List<GotCharacter> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,18 +38,8 @@ class CharacterListActivity : AppCompatActivity() {
         // Set the ActionBar title to "GOT Characters"
         title = getString(R.string.label_character_list)
 
-        // Get the data from the mock database
-        characterDao = GotCharacterMockDaoImpl()
-        characterList = characterDao.getAll()
-
         // Create RecyclerView related objects
-        val rvCharacterList: RecyclerView = binding.rvCharacterList
-        val layoutManager = LinearLayoutManager(this)
-        val dividerItemDecoration = DividerItemDecoration(rvCharacterList.context, layoutManager.orientation)
-
-        // Assign all objects to the RecyclerView
-        rvCharacterList.addItemDecoration(dividerItemDecoration)
-        rvCharacterList.layoutManager = layoutManager
+        setUpRecyclerView()
 
         // Listeners
         binding.btnCharacterAdd.setOnClickListener {
@@ -57,20 +47,36 @@ class CharacterListActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        // Async call to get the characters
         val call: Call<List<GotCharacter>> = RetrofitClient.retrofitService.getAllCharacters()
         call.enqueue(object: Callback<List<GotCharacter>> {
             override fun onResponse(p0: Call<List<GotCharacter>>, p1: Response<List<GotCharacter>>) {
-                Log.d("RETROFIT", "RETROFIT")
-                characterList = p1.body() as MutableList<GotCharacter>
-                adapter = CharacterListAdapter(characterList)
-                rvCharacterList.adapter = adapter
+                characterList = p1.body()!!
+                adapter.notifyItemRangeInserted(0, characterList.size)
             }
 
             override fun onFailure(p0: Call<List<GotCharacter>>, p1: Throwable) {
-                Log.e("RETROFIT", p1.stackTraceToString())
+                Log.e(TAG_ACTIVITY_MAIN, p1.stackTraceToString())
+                showErrorLoadingCharacters()
             }
-        })
 
+            private fun showErrorLoadingCharacters() = guiUtils.showBasicMessageDialog(getString(
+                R.string.message_error_loading_characters),
+                getString(R.string.title_error_loading_characters
+            ))
+        })
+    }
+
+    private fun setUpRecyclerView() {
+        val rvCharacterList: RecyclerView = binding.rvCharacterList
+        val layoutManager = LinearLayoutManager(this)
+        val dividerItemDecoration = DividerItemDecoration(rvCharacterList.context, layoutManager.orientation)
+        adapter = CharacterListAdapter(characterList, this@CharacterListActivity)
+
+        // Assign all objects to the RecyclerView
+        rvCharacterList.addItemDecoration(dividerItemDecoration)
+        rvCharacterList.layoutManager = layoutManager
+        rvCharacterList.adapter = adapter
     }
 
     override fun onResume() {
@@ -81,7 +87,7 @@ class CharacterListActivity : AppCompatActivity() {
     }
 
     private fun showLayoutOnTheScreen() {
-        if (characterList.size == 0) showLayoutNoElements()
+        if (characterList.isEmpty()) showLayoutNoElements()
         else showLayoutWithElements()
     }
 
@@ -94,4 +100,12 @@ class CharacterListActivity : AppCompatActivity() {
         binding.layoutCharacterEmptyList.visibility = View.VISIBLE
         binding.rvCharacterList.visibility = View.GONE
     }
+
+    override fun onItemClick(position: Int) {
+        val intent = Intent(this, CharacterDetailActivity::class.java)
+        intent.putExtra(CharacterDetailActivity.BUNDLE_DATA_CHARACTER, characterList[position])
+        startActivity(intent)
+    }
+
+    override fun onItemLongClick(position: Int) {}
 }

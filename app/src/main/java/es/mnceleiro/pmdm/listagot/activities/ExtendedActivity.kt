@@ -8,10 +8,10 @@ abstract class ExtendedActivity : AppCompatActivity() {
     protected val guiUtils: GuiUtils by lazy { GuiUtils.initialize(this) }
 
     companion object {
-        lateinit var ACTIVITY_MAIN: String
+        lateinit var TAG_ACTIVITY_MAIN: String
     }
 
     init {
-        ACTIVITY_MAIN = this::class.java.simpleName
+        TAG_ACTIVITY_MAIN = this::class.java.simpleName
     }
 }

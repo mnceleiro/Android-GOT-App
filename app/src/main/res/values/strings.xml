@@ -35,4 +35,8 @@
     <string name="action_ok">Aceptar</string>
     <string name="action_search_image_on_the_internet">Buscar</string>
 
+    <!-- Errores -->
+    <string name="message_error_loading_characters">No se han podido cargar los datos. Compruebe que dispone de conexión a internet.</string>
+    <string name="title_error_loading_characters">Error cargando personajes</string>
+
 </resources>

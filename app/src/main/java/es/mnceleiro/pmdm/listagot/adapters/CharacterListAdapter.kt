@@ -10,14 +10,19 @@ import com.squareup.picasso.Picasso
 import es.mnceleiro.pmdm.listagot.R
 import es.mnceleiro.pmdm.listagot.activities.CharacterDetailActivity
 import es.mnceleiro.pmdm.listagot.databinding.ItemCharacterListBinding
+import es.mnceleiro.pmdm.listagot.listeners.OnItemClickListener
 import es.mnceleiro.pmdm.listagot.model.entities.GotCharacter
 
-class CharacterListAdapter(private var characterList: List<GotCharacter>) :
-    RecyclerView.Adapter<CharacterListAdapter.GotCharacterViewHolder>() {
+class CharacterListAdapter(
+    private var characterList: List<GotCharacter>,
+    private val onItemClickListener: OnItemClickListener
+) : RecyclerView.Adapter<CharacterListAdapter.GotCharacterViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GotCharacterViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        return GotCharacterViewHolder(ItemCharacterListBinding.inflate(layoutInflater, parent, false))
+        val binding = ItemCharacterListBinding.inflate(layoutInflater, parent, false)
+
+        return GotCharacterViewHolder(binding, onItemClickListener)
     }
 
     override fun onBindViewHolder(holder: GotCharacterViewHolder, position: Int) {
@@ -26,7 +31,10 @@ class CharacterListAdapter(private var characterList: List<GotCharacter>) :
 
     override fun getItemCount(): Int = characterList.size
 
-    class GotCharacterViewHolder(private val itemBinding: ItemCharacterListBinding) : ViewHolder(itemBinding.root) {
+    class GotCharacterViewHolder(
+        private val itemBinding: ItemCharacterListBinding,
+        private val onItemClickListener: OnItemClickListener
+    ) : ViewHolder(itemBinding.root) {
 
         fun bind(character: GotCharacter) {
             itemBinding.tvCharacterName.text = character.getFullName()
@@ -36,30 +44,22 @@ class CharacterListAdapter(private var characterList: List<GotCharacter>) :
             showImageFromUrl(character.url)
 
             itemBinding.root.setOnClickListener {
-                val intent = Intent(itemBinding.root.context, CharacterDetailActivity::class.java)
-                intent.putExtra(CharacterDetailActivity.BUNDLE_DATA_CHARACTER, character)
-                itemBinding.root.context.startActivity(intent)
+                onItemClickListener.onItemClick(adapterPosition)
             }
         }
 
         private fun showImageFromUrl(url: String) {
             try {
                 Picasso.get().isLoggingEnabled = true
-                Picasso.get()
-                    .load(url)
+                Picasso.get().load(url)
                     .placeholder(R.drawable.ic_baseline_downloading_48)     // placeholder while downloading the real image from the internet
                     .into(itemBinding.ivCharacter)
 
             } catch (e: Exception) {
-
-                e.printStackTrace()
-
-                itemBinding.ivCharacter.setImageDrawable(
-                    AppCompatResources.getDrawable(
+                itemBinding.ivCharacter.setImageDrawable(AppCompatResources.getDrawable(
                         itemBinding.root.context,
                         R.drawable.ic_baseline_image_not_supported_24
-                    )
-                )
+                ))
             }
         }
     }
