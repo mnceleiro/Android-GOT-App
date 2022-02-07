@@ -52,12 +52,18 @@ class CharacterListActivity : ExtendedActivity(), OnItemClickListener {
         call.enqueue(object: Callback<List<GotCharacter>> {
             override fun onResponse(p0: Call<List<GotCharacter>>, p1: Response<List<GotCharacter>>) {
                 characterList = p1.body()!!
+                adapter.setData(characterList)
+
+                showLayoutOnTheScreen()
+
                 adapter.notifyItemRangeInserted(0, characterList.size)
             }
 
             override fun onFailure(p0: Call<List<GotCharacter>>, p1: Throwable) {
                 Log.e(TAG_ACTIVITY_MAIN, p1.stackTraceToString())
                 showErrorLoadingCharacters()
+
+                showLayoutOnTheScreen()
             }
 
             private fun showErrorLoadingCharacters() = guiUtils.showBasicMessageDialog(getString(
@@ -65,6 +71,14 @@ class CharacterListActivity : ExtendedActivity(), OnItemClickListener {
                 getString(R.string.title_error_loading_characters
             ))
         })
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        // TODO: fix
+        // If no elements in the list, hide the recyclerview and show a message
+        //showLayoutOnTheScreen()
     }
 
     private fun setUpRecyclerView() {
@@ -79,13 +93,6 @@ class CharacterListActivity : ExtendedActivity(), OnItemClickListener {
         rvCharacterList.adapter = adapter
     }
 
-    override fun onResume() {
-        super.onResume()
-
-        // If no elements in the list, hide the recyclerview and show a message
-        showLayoutOnTheScreen()
-    }
-
     private fun showLayoutOnTheScreen() {
         if (characterList.isEmpty()) showLayoutNoElements()
         else showLayoutWithElements()
@@ -94,11 +101,13 @@ class CharacterListActivity : ExtendedActivity(), OnItemClickListener {
     private fun showLayoutWithElements() {
         binding.layoutCharacterEmptyList.visibility = View.GONE
         binding.rvCharacterList.visibility = View.VISIBLE
+        binding.layoutCharacterLoadingScreen.visibility = View.GONE
     }
 
     private fun showLayoutNoElements() {
         binding.layoutCharacterEmptyList.visibility = View.VISIBLE
         binding.rvCharacterList.visibility = View.GONE
+        binding.layoutCharacterLoadingScreen.visibility = View.GONE
     }
 
     override fun onItemClick(position: Int) {

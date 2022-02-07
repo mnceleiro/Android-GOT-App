@@ -31,6 +31,10 @@ class CharacterListAdapter(
 
     override fun getItemCount(): Int = characterList.size
 
+    fun setData(characterList: List<GotCharacter>) {
+        this.characterList = characterList
+    }
+
     class GotCharacterViewHolder(
         private val itemBinding: ItemCharacterListBinding,
         private val onItemClickListener: OnItemClickListener
