@@ -33,3 +33,7 @@ En esta versión:
 
 ## Versión 1.4 (funcionalidad completa de CRUD sobre datos mockeados) -> commit 8bd2a2267cc4fb42272f4876c59af740f7bc13aa
 - En esta versión se muestra como añadir funcionalidad de creación, eliminación y modificación de datos todavía sobre elementos mockeados.
+
+## Versión 1.5 (Obtención de películas de un API Rest)
+- Ahora las películas se obtienen de internet (contra thronesapi.com utilizando la librería Retrofit)
+- Mejora en el manejo de clicks sobre la lista de personajes (ahora se hace desde la activity y no desde el adapter utilizando una interfaz)
